@@ -1,2 +1,6 @@
-input/data/left
-input/data/right
+input/train
+input/val
+input/data.csv
+input/flip.py
+input/make_data.py
+input/mouse_classify.zip

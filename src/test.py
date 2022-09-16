@@ -13,7 +13,7 @@ from tqdm.auto import tqdm
 from sklearn.metrics import confusion_matrix
 
 # Constants and other configurations.
-TEST_DIR = '../input/data/test'
+TEST_DIR = './input/data/test'
 BATCH_SIZE = 1
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 IMAGE_RESIZE = 224
@@ -104,7 +104,7 @@ def save_test_results(tensor, target, output_class, counter):
         (5, 55), cv2.FONT_HERSHEY_SIMPLEX, 
         0.7, (0, 255, 0), 2, cv2.LINE_AA
     )
-    cv2.imwrite(f"../outputs/test_image_{counter}.png", image*255.)
+    cv2.imwrite(f"./outputs/test_image_{counter}.png", image*255.)
 
 def test(model, testloader, DEVICE):
     """
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     dataset_test = create_test_set()
     test_loader = create_test_loader(dataset_test)
 
-    checkpoint = torch.load('../outputs/model.pth')
+    checkpoint = torch.load('./outputs/model.pth')
     model = MedicalMNISTCNN(num_classes=2).to(DEVICE)
     model.load_state_dict(checkpoint['model_state_dict'])
     predictions_list, ground_truth_list, acc = test(
@@ -172,5 +172,5 @@ if __name__ == '__main__':
         xticklabels=CLASS_NAMES, 
         yticklabels=CLASS_NAMES
     )
-    plt.savefig('../outputs/heatmap.png')
+    plt.savefig('./outputs/heatmap.png')
     plt.close()

@@ -1,20 +1,14 @@
 import torch
 import torch.nn.functional as F
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import cv2
 import torch.nn.functional as F
 import torch.nn as nn
 from PIL import Image
 
-from torchvision import transforms, datasets
-from torch.utils.data import DataLoader
-from tqdm.auto import tqdm
-from sklearn.metrics import confusion_matrix
+from torchvision import transforms
 
 # Constants and other configurations.
-TEST_IMAGE = '../input/data/test'
+TEST_IMAGE = './input/0.jpg'
 BATCH_SIZE = 1
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 IMAGE_RESIZE = 224
@@ -72,10 +66,11 @@ def infer(model, image, DEVICE):
     print('Infer image')
 
     image = image.to(DEVICE)
+    image = torch.unsqueeze(image, 0)
     # Forward pass.
     outputs = model(image)
     # Softmax probabilities.
-    predictions = F.softmax(outputs).cpu().numpy()
+    predictions = F.softmax(outputs).cpu().detach().numpy()
     # Predicted class number.
     output_class = np.argmax(predictions)
     class_name = CLASS_NAMES[int(output_class)]
@@ -87,8 +82,8 @@ if __name__ == '__main__':
     transform = test_transform(IMAGE_RESIZE)
     transformed_image = transform(image)
 
-    checkpoint = torch.load('../outputs/model.pth')
+    checkpoint = torch.load('./outputs/model.pth')
     model = MedicalMNISTCNN(num_classes=2).to(DEVICE)
     model.load_state_dict(checkpoint['model_state_dict'])
-    class_name = infer(model, image, DEVICE)
+    class_name = infer(model, transformed_image, DEVICE)
     print('Class of image is:', class_name)

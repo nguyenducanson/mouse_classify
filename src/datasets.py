@@ -2,8 +2,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 
 # Required constants.
-TRAIN_DIR = '../input/data'
-VALID_DIR = '../input/data'
+TRAIN_DIR = './input/train'
+VALID_DIR = './input/val'
 IMAGE_SIZE = 224 # Image size of resize when applying transforms.
 BATCH_SIZE = 64
 NUM_WORKERS = 4 # Number of parallel processes for data preparation.
