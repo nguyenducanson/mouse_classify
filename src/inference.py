@@ -11,7 +11,7 @@ from torchvision import transforms
 TEST_IMAGE = './input/0.jpg'
 BATCH_SIZE = 1
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-IMAGE_RESIZE = 224
+IMAGE_RESIZE = 1024
 NUM_WORKERS = 4
 CLASS_NAMES = ['left', 'right']
 

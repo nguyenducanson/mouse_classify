@@ -1,5 +1,8 @@
 input/train
 input/val
+input/test
+input/left
+input/right
 input/data.csv
 input/flip.py
 input/make_data.py

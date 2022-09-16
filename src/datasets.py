@@ -4,8 +4,8 @@ from torch.utils.data import DataLoader
 # Required constants.
 TRAIN_DIR = './input/train'
 VALID_DIR = './input/val'
-IMAGE_SIZE = 224 # Image size of resize when applying transforms.
-BATCH_SIZE = 64
+IMAGE_SIZE = 1024 # Image size of resize when applying transforms.
+BATCH_SIZE = 16
 NUM_WORKERS = 4 # Number of parallel processes for data preparation.
 
 # Training transforms
